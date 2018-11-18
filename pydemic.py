@@ -108,7 +108,7 @@ class Game(object):
         next_player = self.players[next_player_index]
         self.turn = PlayerTurn(game=self, player=next_player)
         self.infection_turn = None
-        print "Turn {}. Ready player {}".format(self.turn_count, next_player_index)
+        print("Turn {}. Ready player {}".format(self.turn_count, next_player_index))
 
     def epidemic(self):
         "Execute the logic of an Epidemic card."
@@ -117,7 +117,7 @@ class Game(object):
 
         # INFECT
         target_city = self.infection_deck.draw(0)
-        print "Epidemic in {}".format(target_city.name)
+        print("Epidemic in {}".format(target_city.name))
         cubes_present = target_city.cubes[target_city.color]
         if cubes_present == 0:
             for i in range(3):
@@ -138,7 +138,7 @@ class Game(object):
         if self.cube_supply[color] < 24:
             return False
         self.eradicated_diseases.append(color)
-        print "{} has been eradicated.".format(color)
+        print("{} has been eradicated.".format(color))
 
     def remove_research_station(self, city_name):
         "Remove a research station from the board. This is not an action."
@@ -152,7 +152,7 @@ class Game(object):
         "Declare game loss for the specified reason."
         self.lost = True
         self.turn = None
-        print "You have lost: {}".format(reason)
+        print("You have lost: {}".format(reason))
 
 class Player(object):
     "Represents a player."
@@ -326,7 +326,7 @@ class PlayerTurn(object):
 
         self.game.cured_diseases.append(color)
         if len(self.game.cured_diseases) == 4:
-            print "All diseases cured: you win!"
+            print("All diseases cured: you win!")
         self.game.check_eradication(color)
 
 
@@ -365,7 +365,7 @@ class InfectionTurn(object):
             raise ValueError("Drawn enough infection cards for this turn.")
 
         target_city = self.game.infection_deck.draw()
-        print target_city
+        print(target_city)
         self.infection_cards_drawn += 1
         target_city.infect()
 
